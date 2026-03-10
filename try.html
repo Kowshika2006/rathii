@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>happy birthday, Rathi 💜</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(145deg, #f3e5ff 0%, #d9c9f0 100%);
+            color: #3c2a4f;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* floating hearts & sparkles */
+        .floating-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .float-heart, .float-sparkle {
+            position: absolute;
+            color: rgba(255, 200, 255, 0.6);
+            font-size: 1.5rem;
+            user-select: none;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+            20% { opacity: 0.8; }
+            100% { transform: translateY(-20vh) scale(1.2); opacity: 0; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        section {
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-radius: 50px 20px 50px 20px;
+            padding: 2.5rem 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 20px 40px rgba(149, 97, 190, 0.15), 0 0 0 2px rgba(255, 255, 255, 0.5) inset;
+            border: 1px solid rgba(255, 218, 255, 0.6);
+        }
+
+        h1, h2 {
+            font-family: 'Dancing Script', cursive;
+            font-weight: 700;
+            color: #5d3b7a;
+            text-shadow: 0 0 12px #f0d9ff, 2px 2px 0 #ffffff80;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        /* hero */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(230, 210, 250, 0.5);
+            border-radius: 70px 20px 70px 20px;
+        }
+
+        .hero h1 {
+            font-size: 4.2rem;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            color: #6b4b8a;
+            margin-top: 1rem;
+        }
+
+        /* memory timeline */
+        .timeline-scroll {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 2rem 0.5rem;
+            scrollbar-width: thin;
+            scrollbar-color: #c9adf0 #f1e4ff;
+        }
+
+        .memory-card {
+            flex: 0 0 260px;
+            background: rgba(255, 240, 255, 0.7);
+            border-radius: 35px 15px 35px 15px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            border: 3px solid #f1c9ff;
+            transition: transform 0.3s;
+        }
+
+        .memory-card img {
+            width: 180px;
+            height: 130px;
+            object-fit: cover;
+            border-radius: 30px 8px 30px 8px;
+            border: 4px solid white;
+            margin-bottom: 1rem;
+        }
+
+        /* Typewriter Letter Section */
+        .typewriter-box {
+            background: #fffafa;
+            border-radius: 30px;
+            padding: 2rem;
+            min-height: 250px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+            color: #4a2c6a;
+            line-height: 1.8;
+            border-left: 8px solid #b38fd6;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            position: relative;
+        }
+
+        .typewriter-cursor {
+            border-right: 3px solid #b38fd6;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink { 50% { border-color: transparent; } }
+
+        /* gallery grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1.8rem;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+            border-radius: 40% 20% 40% 20%;
+            border: 5px solid white;
+            transition: 0.25s;
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(80, 50, 100, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: #f3e2ff;
+            max-width: 550px;
+            width: 90%;
+            border-radius: 30px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        /* reasons list */
+        .reasons-list { list-style: none; max-width: 600px; margin: 0 auto; }
+        .reasons-list li {
+            background: white;
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* surprise button */
+        .surprise-section { text-align: center; }
+        #surpriseBtn {
+            background: #b588e2;
+            padding: 1.5rem 3rem;
+            border-radius: 50px;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            border: none;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 10px 0 #7a4fa3;
+        }
+        #surpriseBtn:active { transform: translateY(5px); box-shadow: 0 5px 0 #7a4fa3; }
+
+        .final-message {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+
+        /* music control */
+        .music-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 10px;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .music-label { font-size: 0.8rem; font-weight: bold; color: #5d3b7a; }
+
+        footer { text-align: center; padding: 2rem; color: #4a3267; }
+    </style>
+</head>
+<body>
+    <div class="floating-elements" id="floatingElements"></div>
+
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <h1>Happy Birthday <br> to my dearest RATHI 💜</h1>
+            <p>Sister by blood, best friend by heart.</p>
+        </section>
+
+        <!-- Memory Timeline -->
+        <section>
+            <h2>✨ Memories ✨</h2>
+            <div class="timeline-scroll">
+                <div class="memory-card"><img src="chikdhood.jpeg" alt="childhood"><div class="memory-caption">👧 childhood</div></div>
+                <div class="memory-card"><img src="1st day.jpeg" alt="college"><div class="memory-caption">first day college</div></div>
+                <div class="memory-card"><img src="funnys.jpeg" alt="funny"><div class="memory-caption">😆 silly faces</div></div>
+                <div class="memory-card"><img src="mall.jpeg" alt="mall"><div class="memory-caption">1st out</div></div>
+                <div class="memory-card"><img src="dream.jpeg" alt="dream"><div class="memory-caption">Dream</div></div>
+                <div class="memory-card"><img src="no smile.jpeg" alt="recent"><div class="memory-caption">💜 no smile</div></div>
+            </div>
+        </section>
+
+        <!-- NEW One-by-One Big Letter Section -->
+        <section>
+            <h2>💌 A Heartfelt Note</h2>
+            <div class="typewriter-box" id="letterContainer">
+                <span id="typewriterText"></span><span class="typewriter-cursor"></span>
+            </div>
+            <p style="text-align: center; margin-top: 1rem; color: #888; font-size: 0.9rem;">(The letter is being written for you...)</p>
+        </section>
+
+        <!-- Photo Gallery -->
+        <section>
+            <h2>📸 Snapshots</h2>
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" data-caption="School days memories"><img src="scl white.jpeg" alt="gallery1"></div>
+                <div class="gallery-item" data-caption="Being silly as always"><img src="silli.jpeg" alt="gallery2"></div>
+                <div class="gallery-item" data-caption="Old gold times"><img src="scl white.jpeg" alt="gallery3"></div>
+                <div class="gallery-item" data-caption="Laughing uncontrollably"><img src="comedy.jpeg" alt="gallery4"></div>
+                <div class="gallery-item" data-caption="Diwali celebrations"><img src="diwali pink.jpeg" alt="gallery5"></div>
+                <div class="gallery-item" data-caption="Matching outfits!"><img src="my shirt.jpeg" alt="gallery6"></div>
+            </div>
+        </section>
+
+        <!-- Reasons Why You Are Special -->
+        <section>
+            <h2>💐 Why You're Magic</h2>
+            <ul class="reasons-list">
+                <li><i class="fas fa-star" style="color:#ab58d6"></i> You are my first and forever best friend</li>
+                <li><i class="fas fa-heart" style="color:#ab58d6"></i> Your smile can brighten the darkest days</li>
+                <li><i class="fas fa-crown" style="color:#ab58d6"></i> You've always protected me like a shield</li>
+                <li><i class="fas fa-feather" style="color:#ab58d6"></i> You listen to all my endless rants</li>
+                <li><i class="fas fa-moon" style="color:#ab58d6"></i> You inspire me to be a better person</li>
+            </ul>
+        </section>
+
+        <!-- Final Surprise Section -->
+        <section class="surprise-section">
+            <button id="surpriseBtn">Click for a Surprise 💜</button>
+            <div id="finalMessage" class="final-message">
+                I am so lucky to have you, Rathi. <br> Happy Birthday Sister! 🎂✨
+            </div>
+        </section>
+
+        <footer>made with love for Rathi 💫</footer>
+    </div>
+
+    <!-- Modal for gallery -->
+    <div id="photoModal" class="modal">
+        <div class="modal-content">
+            <img id="modalImage" src="" alt="enlarged memory" style="width:100%; border-radius:20px;">
+            <div id="modalCaption" class="modal-caption" style="margin-top:1rem; font-family:'Dancing Script'; font-size:1.5rem;"></div>
+        </div>
+    </div>
+
+    <!-- Background music (Tamil Sister Song Instrumental) -->
+    <div class="music-box">
+        <span class="music-label">Sister BGM 🎵</span>
+        <audio id="bgMusic" controls loop>
+            <!-- A placeholder for an instrumental sister theme (Annatthe/Viswasam style feel) -->
+            <source src="Kannil-Anbai.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        (function() {
+            // Floating elements
+            const floatingContainer = document.getElementById('floatingElements');
+            for (let i = 0; i < 20; i++) {
+                const el = document.createElement('div');
+                el.className = Math.random() > 0.5 ? 'float-heart' : 'float-sparkle';
+                el.innerHTML = el.className === 'float-heart' ? '💜' : '✨';
+                el.style.left = Math.random() * 100 + '%';
+                el.style.animationDuration = (Math.random() * 5 + 5) + 's';
+                el.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+                floatingContainer.appendChild(el);
+            }
+
+            // Typewriter Letter Logic
+            const fullText = `Dear Sister Rathi,
+
+I have never even once called you “Akka” properly, but in my heart you have always been my sister and my second mother. So thank you for being my second mother and for always taking care of me.
+
+Usually for everyone, the first time they wear a saree for a celebration, it is their mother’s saree. But the first saree I ever wore was yours. That moment was very special to me, and I will never forget it.
+
+If you had not pushed me and encouraged me, I would never have joined this college. You believed in me, motivated me, and helped me come this far. For that, I will always be thankful.
+
+Whenever we fight, we blame each other, pull each other’s hair, and argue a lot. But all those fights are also a part of our love and memories. Sometimes I may have spoken angrily or said harsh words, but it was never because of you. Sometimes it was just me.
+
+Anyway, Happy Birthday Akka ❤️
+You are my special one, and you are very, very special to me.
+Thank you for being everything in my life.
+
+With lots of love,
+Your little sister. 💜`;
+
+            let index = 0;
+            const textElement = document.getElementById('typewriterText');
+            
+            function typeWriter() {
+                if (index < fullText.length) {
+                    textElement.innerHTML += fullText.charAt(index) === '\n' ? '<br>' : fullText.charAt(index);
+                    index++;
+                    setTimeout(typeWriter, 50);
+                }
+            }
+
+            // Start typewriter when scrolled into view
+            const observer = new IntersectionObserver((entries) => {
+                if(entries[0].isIntersecting) {
+                    typeWriter();
+                    observer.disconnect();
+                }
+            });
+            observer.observe(document.getElementById('letterContainer'));
+
+            // Gallery logic
+            const modal = document.getElementById('photoModal');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            galleryItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    document.getElementById('modalImage').src = item.querySelector('img').src;
+                    document.getElementById('modalCaption').innerText = item.getAttribute('data-caption');
+                    modal.style.display = 'flex';
+                });
+            });
+            modal.onclick = () => modal.style.display = 'none';
+
+            // Surprise
+            const surpriseBtn = document.getElementById('surpriseBtn');
+            surpriseBtn.addEventListener('click', () => {
+                for(let i=0; i<50; i++) {
+                    const conf = document.createElement('div');
+                    conf.innerHTML = '💜';
+                    conf.style.position = 'fixed';
+                    conf.style.left = Math.random() * 100 + 'vw';
+                    conf.style.top = '-5vh';
+                    conf.style.animation = `float ${Math.random() * 2 + 2}s linear forwards`;
+                    document.body.appendChild(conf);
+                }
+                document.getElementById('finalMessage').style.display = 'block';
+            });
+        })();
+    </script>
+</body>
+</html>
